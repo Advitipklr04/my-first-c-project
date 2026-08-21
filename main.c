@@ -12,6 +12,11 @@ int main()
     scanf("%49s",name);
     printf("How many subjects do you have?");
     scanf("%d",&numberofsubjects);
+while(numberofsubjects < 1 || numberofsubjects > 10)
+{
+    printf("Invalid number. Please enter between 1 and 10: ");
+    scanf("%d", &numberofsubjects);
+}
     for(int i=0;i<numberofsubjects;i++)
     {
         printf("Enter the subject %d:",i+1);
@@ -49,13 +54,20 @@ for(int i=0; i<numberofsubjects; i++)
         break;
 
     case 2:
-        printf("\nWhich subject did you complete? ");
-        scanf("%d", &subjectChoice);
+    printf("\nWhich subject did you complete? ");
+    scanf("%d", &subjectChoice);
 
+    if (subjectChoice >= 1 && subjectChoice <= numberofsubjects)
+    {
         status[subjectChoice - 1] = 1;
-
         printf("Subject marked as completed!\n");
-        break;
+    }
+    else
+    {
+        printf("Invalid subject number. Please try again.\n");
+    }
+
+    break;
 
     case 3:
         printf("\nYour daily study goal is %d hours.\n", hours);
