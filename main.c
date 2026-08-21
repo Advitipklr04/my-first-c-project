@@ -6,7 +6,8 @@ int main()
     int hours;
     int numberofsubjects;
     int status[10];
-    int choice;
+    int subjectChoice;
+    int menuChoice;
     printf("Enter your name:");
     scanf("%49s",name);
     printf("How many subjects do you have?");
@@ -17,24 +18,56 @@ int main()
         scanf("%49s",subjects[i]);
         status[i]=0;
     }
-    printf("Which subject did you complete?");
-    scanf("%d",&choice);
-    status[choice-1]=1;
     printf("Enter your daily study goal in hours:");
     scanf("%d",&hours);
-    printf("Hello! %s\n",name);
-    printf("\nYour subjects are:\n");
-    for(int i=0;i<numberofsubjects;i++)
+    menuChoice = 0;
+    while(menuChoice!=4)
     {
-        if(status[i]==1)
-        {
-            printf("%d. %s - Completed\n",i+1,subjects[i]);
-        }
-        else
-        {
-            printf("%d. %s - Pending\n",i+1,subjects[i]);
-        }
+        printf("\n===== STUDY TRACKER =====\n");
+        printf("1. View subjects\n");
+        printf("2. Mark subject completed\n");
+        printf("3. View study goal\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &menuChoice);
+        switch(menuChoice)
+{
+    case 1:
+        printf("\nYour subjects are:\n");
+
+for(int i=0; i<numberofsubjects; i++)
+{
+    if(status[i] == 1)
+    {
+        printf("%d. %s - Completed\n", i+1, subjects[i]);
     }
-    printf("Your daily study goal is %d hours\n",hours);
+    else
+    {
+        printf("%d. %s - Pending\n", i+1, subjects[i]);
+    }
+}
+        break;
+
+    case 2:
+        printf("\nWhich subject did you complete? ");
+        scanf("%d", &subjectChoice);
+
+        status[subjectChoice - 1] = 1;
+
+        printf("Subject marked as completed!\n");
+        break;
+
+    case 3:
+        printf("\nYour daily study goal is %d hours.\n", hours);
+        break;
+
+    case 4:
+        printf("Goodbye!\n");
+        break;
+
+    default:
+        printf("Invalid choice. Please try again.\n");
+}
+    }
     return 0;
 }
